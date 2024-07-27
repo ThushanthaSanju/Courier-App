@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import express from "express";
-import AppDataSource from "./data-source";
+import AppDataSource from "./config/data-source";
 import { json } from "body-parser";
 import authRoutes from "./routes/userRoutes";
 import shipmentRoutes from "./routes/shipmentRoutes";
@@ -14,6 +14,10 @@ const app = express();
 
 app.use(json());
 
+/**
+ * The port number for the server.
+ * If the `PORT` environment variable is set, it will be used. Otherwise, the default value is 3000.
+ */
 const PORT = process.env.PORT || 3000;
 
 // Initialize the database connection

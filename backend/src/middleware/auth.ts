@@ -1,9 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { User } from "../entities/User";
-import { getRepository } from "typeorm";
 import { UserModuleRepo } from "../repository/user";
-import AppDataSource from "../data-source";
+import AppDataSource from "../config/data-source";
 
 const RepoUser = UserModuleRepo;
 

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { ShipmentModuleRepo } from "../repository/shipment";
 import { UserModuleRepo } from "../repository/user";
-import AppDataSource from "../data-source";
+import AppDataSource from "../config/data-source";
 import { plainToClass } from "class-transformer";
 import { validate } from "class-validator";
 import { ShipmentDTO } from "../dto/shipment";
@@ -10,6 +10,13 @@ const RepoShip = ShipmentModuleRepo;
 const RepoUser = UserModuleRepo;
 
 // Create Shipment
+/**
+ * Creates a new shipment.
+ *
+ * @param req - The request object.
+ * @param res - The response object.
+ * @returns The created shipment or an error response.
+ */
 export const createShipment = async (req: Request, res: Response) => {
   const shipmentDto = plainToClass(ShipmentDTO, req.body);
   const errors = await validate(shipmentDto);
@@ -66,6 +73,13 @@ export const getShipmentById = async (req: Request, res: Response) => {
 };
 
 // Track Shipment
+/**
+ * Fetches the details of a shipment and the associated user based on the tracking number.
+ *
+ * @param req - The request object.
+ * @param res - The response object.
+ * @returns A JSON object containing the shipment and user details if found, or an error message if not found.
+ */
 export const trackShipment = async (req: Request, res: Response) => {
   const shipmentRepository = AppDataSource.manager.withRepository(RepoShip);
   const userRepository = AppDataSource.manager.withRepository(RepoUser);

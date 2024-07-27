@@ -1,13 +1,19 @@
 import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import AppDataSource from "../data-source";
+import AppDataSource from "../config/data-source";
 import { UserModuleRepo } from "../repository/user";
 import { validate } from "class-validator";
 import { plainToClass } from "class-transformer";
 import { UserDTO } from "../dto/user";
 const Repo = UserModuleRepo;
 
+/**
+ * Registers a new user.
+ *
+ * @param req - The request object.
+ * @param res - The response object.
+ */
 export const registerUser = async (req: Request, res: Response) => {
   const userDto = plainToClass(UserDTO, req.body);
   const errors = await validate(userDto);
