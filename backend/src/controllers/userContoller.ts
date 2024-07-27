@@ -3,11 +3,17 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import AppDataSource from "../data-source";
 import { UserModuleRepo } from "../repository/user";
-import { Shipment } from "../entities/Shipment";
-
+import { validate } from "class-validator";
+import { plainToClass } from "class-transformer";
+import { UserDTO } from "../dto/user";
 const Repo = UserModuleRepo;
 
 export const registerUser = async (req: Request, res: Response) => {
+  const userDto = plainToClass(UserDTO, req.body);
+  const errors = await validate(userDto);
+  if (errors.length > 0) {
+    return res.status(400).json(errors);
+  }
   const userRepository = AppDataSource.manager.withRepository(Repo);
   const { email, password, name, address } = req.body;
 

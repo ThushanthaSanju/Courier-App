@@ -2,12 +2,20 @@ import { Request, Response } from "express";
 import { ShipmentModuleRepo } from "../repository/shipment";
 import { UserModuleRepo } from "../repository/user";
 import AppDataSource from "../data-source";
+import { plainToClass } from "class-transformer";
+import { validate } from "class-validator";
+import { ShipmentDTO } from "../dto/shipment";
 
 const RepoShip = ShipmentModuleRepo;
 const RepoUser = UserModuleRepo;
 
 // Create Shipment
 export const createShipment = async (req: Request, res: Response) => {
+  const shipmentDto = plainToClass(ShipmentDTO, req.body);
+  const errors = await validate(shipmentDto);
+  if (errors.length > 0) {
+    return res.status(400).json(errors);
+  }
   const shipmentRepository = AppDataSource.manager.withRepository(RepoShip);
   const userRepository = AppDataSource.manager.withRepository(RepoUser);
 
