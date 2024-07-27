@@ -22,8 +22,8 @@ AppDataSource.initialize()
     console.log("Database connection established");
 
     // Use the route files
-    app.use("/auth", authRoutes);
-    app.use("/shipments", shipmentRoutes);
+    app.use("/api/auth", authRoutes);
+    app.use("/api/shipments", shipmentRoutes);
 
     // Use errorHandler middleware after initializing the database
     app.use(errorHandler);
