@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Input, Layout, Menu, Modal } from "antd";
+import { Button, Form, Input, Layout, Menu, Modal, Typography } from "antd";
 import { Link } from "react-router-dom";
 import { trackShipment } from "../services/trackShip";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,8 +31,7 @@ const AdminDashboard: React.FC = () => {
   const onFinish = async (values: any) => {
     try {
       const details = await trackShipment(values.shipmentId);
-      console.log(details?.shipment?.status);
-      setShipmentDetails(details?.shipment?.status);
+      setShipmentDetails(details?.shipment);
       showModal();
     } catch (error) {
       console.error("Error tracking shipment:", error);
@@ -98,7 +97,22 @@ const AdminDashboard: React.FC = () => {
               onOk={handleOk}
               onCancel={handleCancel}
             >
-              <p>Details for Shipment ID: {shipmentDetails}</p>
+              {shipmentDetails && (
+                <>
+                  <Typography>
+                    <b>Status:</b> {shipmentDetails.status}
+                  </Typography>
+                  <Typography>
+                    <b>Recipient Name:</b> {shipmentDetails.recipientName}
+                  </Typography>
+                  <Typography>
+                    <b>Recipient Address:</b> {shipmentDetails.recipientAddress}
+                  </Typography>
+                  <Typography>
+                    <b>Shipment Details:</b> {shipmentDetails.shipmentDetails}
+                  </Typography>
+                </>
+              )}
             </Modal>
           </Content>
         </Layout>

@@ -28,7 +28,7 @@ const LoginPage = () => {
       <Title level={2}>Login</Title>
       <Form name="login" initialValues={{ remember: true }} onFinish={onFinish}>
         <Form.Item
-          name="username"
+          name="email"
           rules={[{ required: true, message: "Please input your Username!" }]}
         >
           <Input placeholder="Username" />

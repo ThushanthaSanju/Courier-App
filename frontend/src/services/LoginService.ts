@@ -10,7 +10,7 @@ export const login = async (data: LoginData) => {
     const response = await axiosInstance.post("/auth/login", data);
     localStorage.setItem("user", JSON.stringify(response));
 
-    return response.data;
+    return response;
   } catch (error) {
     console.error("Error logging in:", error);
     throw error;

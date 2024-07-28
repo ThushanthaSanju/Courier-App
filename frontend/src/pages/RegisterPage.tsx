@@ -4,16 +4,19 @@ import { Link } from "react-router-dom";
 import { createAccount } from "../services/RegisterService";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const { Title } = Typography;
 
 const RegisterPage: React.FC = () => {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
   const handleSubmit = async (values: any) => {
     try {
       await createAccount(values);
       toast.success("Registration successful!");
+      navigate("/"); // Replace '/desired-path' with the actual path you want to navigate to
     } catch (error) {
       toast.error("Registration failed. Please try again.");
     }

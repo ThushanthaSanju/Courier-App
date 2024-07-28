@@ -119,7 +119,8 @@ const Dashboard: React.FC = () => {
 
       toast.error("Error Creating shipment.");
     } finally {
-      setIsModalVisible(false);
+      setIsModalVisibleCreate(false);
+
       setCurrentShipment(null);
     }
   };
@@ -139,13 +140,14 @@ const Dashboard: React.FC = () => {
     try {
       if (selectedShipment) {
         deleteShipment(selectedShipment.id);
-        fetchShipments();
+
         form.resetFields();
 
         toast.success("Shipment deleted successfully!");
         setDeleteModalVisible(false);
         setSelectedShipment(null);
       }
+      fetchShipments();
     } catch (error) {
       toast.error("Error deleting shipment.");
     }
