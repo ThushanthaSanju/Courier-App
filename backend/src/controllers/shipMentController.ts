@@ -83,12 +83,12 @@ export const getShipmentById = async (req: Request, res: Response) => {
 export const trackShipment = async (req: Request, res: Response) => {
   const shipmentRepository = AppDataSource.manager.withRepository(RepoShip);
   const userRepository = AppDataSource.manager.withRepository(RepoUser);
-  const { trackingNumber } = req.params;
+  const id = req.params.id;
 
   try {
     // Fetch the shipment details
     const shipment = await shipmentRepository.findOne({
-      where: { trackingNumber },
+      where: { trackingNumber: id },
       relations: ["user"], // Ensure the user relation is loaded
     });
 
@@ -126,7 +126,23 @@ export const trackShipment = async (req: Request, res: Response) => {
     res.status(500).send("Error tracking shipment");
   }
 };
+//Get User Shipments
 
+export const getAllShipments = async (req: Request, res: Response) => {
+  // Get the shipment repository
+  const shipmentRepository = AppDataSource.manager.withRepository(RepoShip);
+
+  try {
+    // Find all shipments without filtering by user ID
+    const shipments = await shipmentRepository.find();
+
+    // Send the retrieved shipments with a 200 status code
+    res.status(200).send(shipments);
+  } catch (error) {
+    // Handle any errors that occur during the retrieval process
+    res.status(500).send("Error retrieving shipments");
+  }
+};
 // Get User Shipments
 export const getUserShipments = async (req: Request, res: Response) => {
   const shipmentRepository = AppDataSource.manager.withRepository(RepoShip);
@@ -143,5 +159,64 @@ export const getUserShipments = async (req: Request, res: Response) => {
     res.status(200).send(shipments);
   } catch (error) {
     res.status(500).send("Error retrieving user shipments");
+  }
+};
+// Update Shipment
+export const updateShipment = async (req: Request, res: Response) => {
+  const shipmentRepository = AppDataSource.manager.withRepository(RepoShip);
+
+  if (!req.user) {
+    return res.status(401).send("User not authenticated");
+  }
+
+  try {
+    // const shipmentId = req.params.id;
+    const updatedData = req.body;
+    const shipmentId = parseInt(req.params.id, 10);
+    const shipment = await shipmentRepository.findOne({
+      where: { id: shipmentId, user: { id: req.user.id } },
+    });
+
+    if (!shipment) {
+      return res.status(404).send("Shipment not found");
+    }
+
+    await shipmentRepository.update(shipmentId, updatedData);
+
+    const updatedShipment = await shipmentRepository.findOne({
+      where: { id: shipmentId },
+    });
+
+    res.status(200).send(updatedShipment);
+  } catch (error) {
+    res.status(500).send("Error updating shipment");
+  }
+};
+
+// Delete Shipment
+export const deleteShipment = async (req: Request, res: Response) => {
+  const shipmentRepository = AppDataSource.manager.withRepository(RepoShip);
+
+  if (!req.user) {
+    return res.status(401).send("User not authenticated");
+  }
+
+  try {
+    // const shipmentId = req.params.id;
+    const shipmentId = parseInt(req.params.id, 10);
+
+    const shipment = await shipmentRepository.findOne({
+      where: { id: shipmentId, user: { id: req.user.id } },
+    });
+
+    if (!shipment) {
+      return res.status(404).send("Shipment not found");
+    }
+
+    await shipmentRepository.delete(shipmentId);
+
+    res.status(200).send("Shipment deleted successfully");
+  } catch (error) {
+    res.status(500).send("Error deleting shipment");
   }
 };

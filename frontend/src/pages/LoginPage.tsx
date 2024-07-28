@@ -1,5 +1,5 @@
 import { Form, Input, Button, Typography } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../services/LoginService";
 
 import { toast, ToastContainer } from "react-toastify";
@@ -8,12 +8,15 @@ import "react-toastify/dist/ReactToastify.css";
 const { Title } = Typography;
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+
   const onFinish = async (values: { email: string; password: string }) => {
     try {
       const response = await login(values);
       toast.success("Login successful!");
       // Handle successful login (e.g., redirect, store token, etc.)
       console.log("Login response:", response);
+      navigate("/dashboard"); // Navigate to the dashboard page
     } catch (error) {
       toast.error("Login failed. Please check your credentials and try again.");
       console.error("Login error:", error);
