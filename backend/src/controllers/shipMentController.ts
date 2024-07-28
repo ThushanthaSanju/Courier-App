@@ -206,7 +206,7 @@ export const deleteShipment = async (req: Request, res: Response) => {
     const shipmentId = parseInt(req.params.id, 10);
 
     const shipment = await shipmentRepository.findOne({
-      where: { id: shipmentId, user: { id: req.user.id } },
+      where: { id: shipmentId },
     });
 
     if (!shipment) {

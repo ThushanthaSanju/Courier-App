@@ -16,7 +16,10 @@ const RegisterPage: React.FC = () => {
     try {
       await createAccount(values);
       toast.success("Registration successful!");
-      navigate("/"); // Replace '/desired-path' with the actual path you want to navigate to
+      toast.info("Redirecting to login page...");
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (error) {
       toast.error("Registration failed. Please try again.");
     }
