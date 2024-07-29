@@ -8,6 +8,7 @@ import {
   UserOutlined,
   DashboardOutlined,
   ClockCircleOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 
 const { Content, Sider } = Layout;
@@ -63,6 +64,12 @@ const AdminDashboard: React.FC = () => {
               <ClockCircleOutlined />
               <Link to="/ship" style={{ marginLeft: "8px" }}>
                 Track Shipment
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="4" style={{ marginTop: "10px" }}>
+              <LogoutOutlined />
+              <Link to="/" style={{ marginLeft: "8px" }}>
+                Logout
               </Link>
             </Menu.Item>
           </Menu>

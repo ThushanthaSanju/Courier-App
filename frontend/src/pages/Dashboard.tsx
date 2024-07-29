@@ -13,6 +13,7 @@ import { ToastContainer } from "react-toastify";
 import {
   UserOutlined,
   DashboardOutlined,
+  LogoutOutlined,
   ClockCircleOutlined,
 } from "@ant-design/icons";
 
@@ -236,6 +237,12 @@ const Dashboard: React.FC = () => {
               <ClockCircleOutlined />
               <Link to="/ship" style={{ marginLeft: "8px" }}>
                 Track Shipment
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="4" style={{ marginTop: "10px" }}>
+              <LogoutOutlined />
+              <Link to="/" style={{ marginLeft: "8px" }}>
+                Logout
               </Link>
             </Menu.Item>
           </Menu>
