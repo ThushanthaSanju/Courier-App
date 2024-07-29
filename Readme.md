@@ -44,6 +44,7 @@ Make sure you have the following installed:
 
 2. Install the dependencies:
    npm install
+
    3.To start the development server, run:
    npm run dev
    This will start the application on http://localhost:3000.
