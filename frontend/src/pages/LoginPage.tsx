@@ -42,7 +42,20 @@ const LoginPage = () => {
         }}
       >
         <div style={{ maxWidth: "300px", width: "100%", padding: "50px" }}>
-          <Title level={2}>Login</Title>
+          <Title level={2} style={{ textAlign: "center", color: "#1890ff" }}>
+            Welcome to SpeedyDeliver
+          </Title>
+          <Title
+            level={3}
+            style={{
+              textAlign: "center",
+              marginBottom: "2rem",
+              color: "#000000",
+            }}
+          >
+            Login
+          </Title>
+
           <Form
             name="login"
             initialValues={{ remember: true }}

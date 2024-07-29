@@ -35,8 +35,19 @@ const RegisterPage: React.FC = () => {
         }}
       >
         <div style={{ maxWidth: "400px", width: "100%", padding: "1rem" }}>
-          {" "}
-          <Title level={2}>Register</Title>
+          <Title level={2} style={{ textAlign: "center", color: "#1890ff" }}>
+            Join SpeedyDeliver
+          </Title>
+          <Title
+            level={3}
+            style={{
+              textAlign: "center",
+              marginBottom: "2rem",
+              color: "#000000",
+            }}
+          >
+            Create Your Account
+          </Title>
           <Form form={form} layout="vertical" onFinish={handleSubmit}>
             <Form.Item
               label="Name"

@@ -206,7 +206,7 @@ const AdminDashboard: React.FC = () => {
     },
   ];
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{ minHeight: "88vh" }}>
       <Layout>
         <Sider width={200} className="site-layout-background">
           <Menu

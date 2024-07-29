@@ -40,7 +40,7 @@ const AdminDashboard: React.FC = () => {
   };
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{ minHeight: "88vh" }}>
       <Layout>
         <Sider width={200} className="site-layout-background">
           <Menu
@@ -87,10 +87,13 @@ const AdminDashboard: React.FC = () => {
               <Form.Item
                 name="shipmentId"
                 rules={[
-                  { required: true, message: "Please input the shipment ID!" },
+                  {
+                    required: true,
+                    message: "Please input the shipment Tracking Number!",
+                  },
                 ]}
               >
-                <Input placeholder="Enter Shipment ID" />
+                <Input placeholder="Enter Tracking Number!" />
               </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit">
