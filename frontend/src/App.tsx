@@ -1,31 +1,47 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import Register from "./pages/RegisterPage";
-import AdminDashboard from "./pages/AdminDashboard";
-import Dashboard from "./pages/Dashboard";
-import TrackShip from "./pages/TrackShipment";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
+import { Layout } from "antd";
 import AppHeader from "./components/Header";
 import AppFooter from "./components/Footer";
-import { Layout } from "antd";
-import { Content } from "antd/es/layout/layout";
-const App = () => {
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import TrackShipment from "./pages/TrackShipment";
+import Dashboard from "./pages/Dashboard";
+import AdminDashboard from "./pages/AdminDashboard";
+
+const { Content } = Layout;
+
+const App: React.FC = () => {
+  const location = useLocation();
+  const hideHeaderFooter =
+    location.pathname === "/" || location.pathname === "/register";
+
   return (
-    <Router>
-      <Layout style={{ minHeight: "100vh" }}>
-        <AppHeader />
-        <Content style={{}}>
-          <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/admin-dashboard" element={<AdminDashboard />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/ship" element={<TrackShip />} />
-          </Routes>{" "}
-        </Content>
-        <AppFooter />
-      </Layout>
-    </Router>
+    <Layout style={{ minHeight: "100vh" }}>
+      {!hideHeaderFooter && <AppHeader />}
+      <Content>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/ship" element={<TrackShipment />} />
+        </Routes>
+      </Content>
+      {!hideHeaderFooter && <AppFooter />}
+    </Layout>
   );
 };
 
-export default App;
+const AppWrapper: React.FC = () => (
+  <Router>
+    <App />
+  </Router>
+);
+
+export default AppWrapper;
