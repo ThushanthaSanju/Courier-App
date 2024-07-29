@@ -9,12 +9,7 @@ Welcome to the SpeedyDeliver Courier App! This application allows users to track
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Running the Development Server](#running-the-development-server)
-  - [Building for Production](#building-for-production)
-  - [Running Tests](#running-tests)
 - [Folder Structure](#folder-structure)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
 
 ## Features
 
@@ -45,9 +40,13 @@ Make sure you have the following installed:
 2. Install the dependencies:
    npm install
 
-   3.To start the development server, run:
-   npm run dev
-   This will start the application on http://localhost:3000.
+3.To start the development server, run:
+npm run dev
+This will start the application on http://localhost:3000.
+
+4.To start the frontend, run: use vite
+npm run dev
+This will start the application on http://localhost:5173.
 
 speedydeliver/frontend
 ├── public/ # Public assets (index.html, images, etc.)
