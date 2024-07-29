@@ -47,32 +47,3 @@ This will start the application on http://localhost:3000.
 4.To start the frontend, run: use vite
 npm run dev
 This will start the application on http://localhost:5173.
-
-speedydeliver/frontend
-├── public/ # Public assets (index.html, images, etc.)
-├── src/ # Source code for the application
-│ ├── components/ # Reusable components (Header, Footer, etc.)
-│ ├── pages/ # Page components (LoginPage, RegisterPage, Dashboard, etc.)
-│ ├── styles/ # CSS and styling files
-│ ├── App.tsx # Main App component
-│ ├── index.tsx # Entry point of the application
-│ └── ... # Other source files
-├── .gitignore # Git ignore file
-├── package.json # NPM package configuration
-├── README.md # This README file
-└── ... # Other configuration files
-
-speedydeliver/backend
-├── src/ # Source code for the backend
-│ ├── controllers/ # Controllers for handling requests
-│ ├── models/ # Database models
-│ ├── routes/ # API routes
-│ ├── services/ # Business logic and services
-│ ├── utils/ # Utility functions
-│ ├── app.js # Main application file
-│ └── ... # Other source files
-├── .env # Environment variables
-├── .gitignore # Git ignore file
-├── package.json # NPM package configuration
-├── README.md # This README file
-└── ... # Other configuration files
